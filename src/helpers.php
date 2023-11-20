@@ -29,6 +29,18 @@ if (!function_exists('back')) {
     }
 }
 
+if (!function_exists('asset')) {
+    function asset(string $url): string
+    {
+        $baseUrl = rtrim(
+            config('app.asset_url') ?? config('app.url', 'localhost:8000'),
+            '/'
+        );
+
+        return $baseUrl . '/' . ltrim($url, '/');
+    }
+}
+
 if (!function_exists('blank')) {
     function blank(mixed $value): bool
     {
