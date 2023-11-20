@@ -1,0 +1,24 @@
+{
+    "name": "d076/php-framework",
+    "description": "Simple PHP framework",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dmitry Titov",
+            "email": "dezmond076@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2"
+    },
+    "require-dev": {
+        "symfony/var-dumper": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "D076\\PhpFramework\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
