@@ -11,18 +11,21 @@ if (!function_exists('app')) {
 }
 
 if (!function_exists('redirect')) {
-    function redirect(string $url): void
+    function redirect(string $url, array $headers = []): void
     {
+        foreach ($headers as $key => $value) {
+            header("$key: $value");
+        }
+
         header("Location: $url");
         exit;
     }
 }
 
 if (!function_exists('back')) {
-    function back(): void
+    function back(array $headers = []): void
     {
-        header('Location: ' . app()->request->previousUri());
-        exit;
+        redirect(app()->request->previousUri(), $headers);
     }
 }
 
