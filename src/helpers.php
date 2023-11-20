@@ -10,6 +10,22 @@ if (!function_exists('app')) {
     }
 }
 
+if (!function_exists('redirect')) {
+    function redirect(string $url): void
+    {
+        header("Location: $url");
+        exit;
+    }
+}
+
+if (!function_exists('back')) {
+    function back(): void
+    {
+        header('Location: ' . app()->request->previousUri());
+        exit;
+    }
+}
+
 if (!function_exists('blank')) {
     function blank(mixed $value): bool
     {
