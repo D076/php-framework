@@ -2,6 +2,10 @@
 
 namespace D076\PhpFramework\Container;
 
+use D076\PhpFramework\Auth\Auth;
+use D076\PhpFramework\Auth\AuthInterface;
+use D076\PhpFramework\Database\Database;
+use D076\PhpFramework\Database\DatabaseInterface;
 use D076\PhpFramework\Http\Request;
 use D076\PhpFramework\Http\RequestInterface;
 use D076\PhpFramework\Router\Router;
@@ -13,11 +17,14 @@ use D076\PhpFramework\View\ViewInterface;
 
 class Container
 {
-    private static ?Container $instance = null;
     public readonly RequestInterface $request;
     public readonly RouterInterface $router;
     public readonly SessionInterface $session;
     public readonly ViewInterface $view;
+    public readonly DatabaseInterface|null $db;
+    public readonly AuthInterface $auth;
+
+    private static ?Container $instance = null;
 
     public function __construct()
     {
@@ -35,5 +42,20 @@ class Container
         $this->session = new Session();
         $this->router = new Router();
         $this->view = new View();
+        $this->auth = new Auth();
+
+        if (config('database.enabled', true)) {
+            $this->db = new Database([
+                'driver' => config('database.driver', 'mysql'),
+                'host' => config('database.host', 'localhost'),
+                'port' => config('database.port', 3306),
+                'database' => config('database.database'),
+                'username' => config('database.username'),
+                'password' => config('database.password', ''),
+                'charset' => config('database.charset', 'utf8'),
+            ]);
+        } else {
+            $this->db = null;
+        }
     }
 }
