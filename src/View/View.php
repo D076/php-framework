@@ -16,7 +16,7 @@ class View implements ViewInterface
     {
         $this->title = $title;
 
-        $viewPath = constant('APP_PATH') . "resources/views/$name.php";
+        $viewPath = constant('APP_PATH') . "/resources/views/$name.php";
 
         if (!file_exists($viewPath)) {
             throw new RuntimeException("View $name not found");
@@ -29,7 +29,7 @@ class View implements ViewInterface
 
     public function component(string $name, array $data = []): void
     {
-        $componentPath = constant('APP_PATH') . "resources/views/components/$name.php";
+        $componentPath = constant('APP_PATH') . "/resources/views/components/$name.php";
 
         if (!file_exists($componentPath)) {
             throw new RuntimeException("Component $name not found");
