@@ -12,6 +12,8 @@ use D076\PhpFramework\Router\Router;
 use D076\PhpFramework\Router\RouterInterface;
 use D076\PhpFramework\Session\Session;
 use D076\PhpFramework\Session\SessionInterface;
+use D076\PhpFramework\Storage\Storage;
+use D076\PhpFramework\Storage\StorageInterface;
 use D076\PhpFramework\View\View;
 use D076\PhpFramework\View\ViewInterface;
 
@@ -23,6 +25,7 @@ class Container
     public readonly ViewInterface $view;
     public readonly DatabaseInterface|null $db;
     public readonly AuthInterface $auth;
+    public readonly StorageInterface $storage;
 
     private static ?Container $instance = null;
 
@@ -43,6 +46,7 @@ class Container
         $this->router = new Router();
         $this->view = new View();
         $this->auth = new Auth();
+        $this->storage = new Storage();
 
         if (config('database.enabled', true)) {
             $this->db = new Database([

@@ -2,6 +2,8 @@
 
 namespace D076\PhpFramework\Http;
 
+use D076\PhpFramework\Http\Upload\UploadedFileInterface;
+use D076\PhpFramework\Http\Upload\UploadedFile;
 use D076\PhpFramework\Validator\Validator;
 use D076\PhpFramework\Validator\ValidatorInterface;
 
@@ -60,5 +62,20 @@ readonly class Request implements RequestInterface
         return empty($this->validator->errors())
             ? null
             : $this->validator->errors();
+    }
+
+    public function file(string $key): ?UploadedFileInterface
+    {
+        if (! isset($this->files[$key]) || $this->files[$key]['error'] !== UPLOAD_ERR_OK) {
+            return null;
+        }
+
+        return new UploadedFile(
+            $this->files[$key]['name'],
+            $this->files[$key]['type'],
+            $this->files[$key]['tmp_name'],
+            $this->files[$key]['error'],
+            $this->files[$key]['size'],
+        );
     }
 }
