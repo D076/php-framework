@@ -2,7 +2,7 @@
 
 namespace D076\PhpFramework\View;
 
-use http\Exception\RuntimeException;
+use RuntimeException;
 
 class View implements ViewInterface
 {
