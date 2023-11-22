@@ -11,6 +11,7 @@ class App
     public function __construct()
     {
         $this->container = Container::getInstance();
+        $this->container->registerServices();
     }
 
     public function run(): void

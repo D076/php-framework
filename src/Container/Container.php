@@ -30,26 +30,26 @@ class Container
     public readonly Env $env;
 
     private static ?Container $instance = null;
-
-    public function __construct()
-    {
-        $this->registerServices();
-    }
+    private bool $isRegistered = false;
 
     public static function getInstance(): static
     {
         return self::$instance ??= new static();
     }
 
-    private function registerServices(): void
+    public function registerServices(): void
     {
+        if ($this->isRegistered) {
+            return;
+        }
+
+        $this->env = new Env();
         $this->request = Request::createFromGlobals();
         $this->session = new Session();
         $this->router = new Router();
         $this->view = new View();
         $this->auth = new Auth();
         $this->storage = new Storage();
-        $this->env = new Env();
 
         if (config('database.enabled', true)) {
             $this->db = new Database([
@@ -64,5 +64,7 @@ class Container
         } else {
             $this->db = null;
         }
+
+        $this->isRegistered = true;
     }
 }
