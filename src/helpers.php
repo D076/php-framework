@@ -83,7 +83,7 @@ if (!function_exists('class_basename')) {
 if (!function_exists('env')) {
     function env(string $key, mixed $default = null): mixed
     {
-        return $default;
+        return app()->env->get($key, $default);
     }
 }
 
@@ -91,13 +91,6 @@ if (!function_exists('config')) {
     function config(string $key, mixed $default = null): mixed
     {
         return Config::get($key, $default);
-    }
-}
-
-if (!function_exists('env')) {
-    function env(string $key, mixed $default = null): mixed
-    {
-        return app()->env->get($key, $default);
     }
 }
 
