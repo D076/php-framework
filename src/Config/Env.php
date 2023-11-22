@@ -14,9 +14,9 @@ class Env implements EnvInterface
     private function loadEnv(): void
     {
         try {
-            $path = constant('APP_PATH') . '/.env';
+            $path = constant('APP_PATH').'/.env';
 
-            if (!is_readable($path)) {
+            if (! is_readable($path)) {
                 throw new \RuntimeException(sprintf('%s file is not readable', $path));
             }
 
@@ -31,7 +31,7 @@ class Env implements EnvInterface
                 $this->env[$this->getClearValue($name)] = $this->getClearValue($value);
             }
         } catch (\Throwable $exception) {
-            throw new \RuntimeException('Error loading .env file: ' . $exception->getMessage());
+            throw new \RuntimeException('Error loading .env file: '.$exception->getMessage());
         }
     }
 

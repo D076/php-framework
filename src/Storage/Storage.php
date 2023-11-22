@@ -4,7 +4,6 @@ namespace D076\PhpFramework\Storage;
 
 class Storage implements StorageInterface
 {
-
     public function url(string $path): string
     {
         $url = config('app.url', 'http://localhost:8000');

@@ -10,11 +10,11 @@ class Auth implements AuthInterface
             $this->username() => $username,
         ]);
 
-        if (!$user) {
+        if (! $user) {
             return false;
         }
 
-        if (!password_verify($password, $user[$this->password()])) {
+        if (! password_verify($password, $user[$this->password()])) {
             return false;
         }
 
@@ -30,7 +30,7 @@ class Auth implements AuthInterface
 
     public function user(): ?User
     {
-        if (!$this->check()) {
+        if (! $this->check()) {
             return null;
         }
 

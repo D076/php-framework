@@ -5,12 +5,11 @@ namespace D076\PhpFramework\Auth;
 class User
 {
     public function __construct(
-        private int     $id,
+        private int $id,
         private ?string $name,
-        private string  $email,
-        private string  $password,
-    )
-    {
+        private string $email,
+        private string $password,
+    ) {
     }
 
     public function id(): int

@@ -9,10 +9,12 @@
     }
   ],
   "require": {
-    "php": "^8.2"
+    "php": "^8.2",
+    "ext-pdo": "*"
   },
   "require-dev": {
-    "symfony/var-dumper": "^6.3"
+    "symfony/var-dumper": "^6.3",
+    "laravel/pint": "^1.13"
   },
   "autoload": {
     "files": [

@@ -22,15 +22,23 @@ use D076\PhpFramework\View\ViewInterface;
 class Container
 {
     public readonly RequestInterface $request;
+
     public readonly RouterInterface $router;
+
     public readonly SessionInterface $session;
+
     public readonly ViewInterface $view;
-    public readonly DatabaseInterface|null $db;
+
+    public readonly ?DatabaseInterface $db;
+
     public readonly AuthInterface $auth;
+
     public readonly StorageInterface $storage;
+
     public readonly EnvInterface $env;
 
     private static ?Container $instance = null;
+
     private bool $isRegistered = false;
 
     public static function getInstance(): static

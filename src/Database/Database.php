@@ -16,7 +16,7 @@ class Database implements DatabaseInterface
         $fields = array_keys($data);
 
         $columns = implode(', ', $fields);
-        $binds = implode(', ', array_map(fn($field) => ":$field", $fields));
+        $binds = implode(', ', array_map(fn ($field) => ":$field", $fields));
 
         $sql = "INSERT INTO $table ($columns) VALUES ($binds)";
 
@@ -28,7 +28,7 @@ class Database implements DatabaseInterface
             return false;
         }
 
-        return (int)$this->pdo->lastInsertId();
+        return (int) $this->pdo->lastInsertId();
     }
 
     public function first(string $table, array $conditions = []): ?array
@@ -36,7 +36,7 @@ class Database implements DatabaseInterface
         $where = '';
 
         if (count($conditions) > 0) {
-            $where = 'WHERE ' . implode(' AND ', array_map(fn($field) => "$field = :$field", array_keys($conditions)));
+            $where = 'WHERE '.implode(' AND ', array_map(fn ($field) => "$field = :$field", array_keys($conditions)));
         }
 
         $sql = "SELECT * FROM $table $where LIMIT 1";
@@ -55,13 +55,13 @@ class Database implements DatabaseInterface
         $where = '';
 
         if (count($conditions) > 0) {
-            $where = 'WHERE ' . implode(' AND ', array_map(fn($field) => "$field = :$field", array_keys($conditions)));
+            $where = 'WHERE '.implode(' AND ', array_map(fn ($field) => "$field = :$field", array_keys($conditions)));
         }
 
         $sql = "SELECT * FROM $table $where";
 
         if (count($order) > 0) {
-            $sql .= ' ORDER BY ' . implode(', ', array_map(fn($field, $direction) => "$field $direction", array_keys($order), $order));
+            $sql .= ' ORDER BY '.implode(', ', array_map(fn ($field, $direction) => "$field $direction", array_keys($order), $order));
         }
 
         if ($limit > 0) {
@@ -80,7 +80,7 @@ class Database implements DatabaseInterface
         $where = '';
 
         if (count($conditions) > 0) {
-            $where = 'WHERE ' . implode(' AND ', array_map(fn($field) => "$field = :$field", array_keys($conditions)));
+            $where = 'WHERE '.implode(' AND ', array_map(fn ($field) => "$field = :$field", array_keys($conditions)));
         }
 
         $sql = "DELETE FROM $table $where";
@@ -94,12 +94,12 @@ class Database implements DatabaseInterface
     {
         $fields = array_keys($data);
 
-        $set = implode(', ', array_map(fn($field) => "$field = :$field", $fields));
+        $set = implode(', ', array_map(fn ($field) => "$field = :$field", $fields));
 
         $where = '';
 
         if (count($conditions) > 0) {
-            $where = 'WHERE ' . implode(' AND ', array_map(fn($field) => "$field = :$field", array_keys($conditions)));
+            $where = 'WHERE '.implode(' AND ', array_map(fn ($field) => "$field = :$field", array_keys($conditions)));
         }
 
         $sql = "UPDATE $table SET $set $where";

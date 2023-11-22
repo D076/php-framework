@@ -7,12 +7,11 @@ use Closure;
 readonly class Route
 {
     public function __construct(
-        private string        $uri,
-        private string        $method,
+        private string $uri,
+        private string $method,
         private array|Closure $action,
-        private array         $middlewares = []
-    )
-    {
+        private array $middlewares = []
+    ) {
     }
 
     public static function get(string $uri, array|Closure $action, array $middlewares = []): static
@@ -42,7 +41,7 @@ readonly class Route
 
     public function hasMiddlewares(): bool
     {
-        return !empty($this->middlewares);
+        return ! empty($this->middlewares);
     }
 
     public function getMiddlewares(): array

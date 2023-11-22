@@ -15,6 +15,8 @@ interface DatabaseInterface
     public function update(string $table, array $data, array $conditions = []): void;
 
     public function withTransaction(callable $callback): mixed;
+
     public function beginTransaction(): bool;
+
     public function commit(): bool;
 }

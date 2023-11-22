@@ -21,7 +21,7 @@ class Router implements RouterInterface
     {
         $route = $this->findRoute($uri, $method);
 
-        if (!$route) {
+        if (! $route) {
             $this->notFound();
         }
 
@@ -40,7 +40,6 @@ class Router implements RouterInterface
             /** @var Controller $controller */
             $controller = new $controller();
 
-
             call_user_func([$controller, $action]);
         } else {
             call_user_func($route->getAction());
@@ -55,7 +54,7 @@ class Router implements RouterInterface
 
     private function findRoute(string $uri, string $method): Route|false
     {
-        if (!isset($this->routes[$method][$uri])) {
+        if (! isset($this->routes[$method][$uri])) {
             return false;
         }
 
@@ -76,6 +75,6 @@ class Router implements RouterInterface
      */
     private function getRoutes(): array
     {
-        return require_once constant('APP_PATH') . '/routes/web.php';
+        return require_once constant('APP_PATH').'/routes/web.php';
     }
 }

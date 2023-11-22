@@ -3,14 +3,14 @@
 use D076\PhpFramework\Config\Config;
 use D076\PhpFramework\Container\Container;
 
-if (!function_exists('app')) {
+if (! function_exists('app')) {
     function app(): Container
     {
         return Container::getInstance();
     }
 }
 
-if (!function_exists('redirect')) {
+if (! function_exists('redirect')) {
     function redirect(string $url, array $headers = []): void
     {
         foreach ($headers as $key => $value) {
@@ -22,14 +22,14 @@ if (!function_exists('redirect')) {
     }
 }
 
-if (!function_exists('back')) {
+if (! function_exists('back')) {
     function back(array $headers = []): void
     {
         redirect(app()->request->previousUri(), $headers);
     }
 }
 
-if (!function_exists('asset')) {
+if (! function_exists('asset')) {
     function asset(string $url): string
     {
         $baseUrl = rtrim(
@@ -37,14 +37,14 @@ if (!function_exists('asset')) {
             '/'
         );
 
-        return $baseUrl . '/' . ltrim($url, '/');
+        return $baseUrl.'/'.ltrim($url, '/');
     }
 }
 
-if (!function_exists('blank')) {
+if (! function_exists('blank')) {
     function blank(mixed $value): bool
     {
-        if (!isset($value)) {
+        if (! isset($value)) {
             return true;
         }
 
@@ -64,14 +64,14 @@ if (!function_exists('blank')) {
     }
 }
 
-if (!function_exists('filled')) {
+if (! function_exists('filled')) {
     function filled(mixed $value): bool
     {
-        return !blank($value);
+        return ! blank($value);
     }
 }
 
-if (!function_exists('class_basename')) {
+if (! function_exists('class_basename')) {
     function class_basename(string|object $class): string
     {
         $class = is_object($class) ? get_class($class) : $class;
@@ -80,21 +80,21 @@ if (!function_exists('class_basename')) {
     }
 }
 
-if (!function_exists('env')) {
+if (! function_exists('env')) {
     function env(string $key, mixed $default = null): mixed
     {
         return app()->env->get($key, $default);
     }
 }
 
-if (!function_exists('config')) {
+if (! function_exists('config')) {
     function config(string $key, mixed $default = null): mixed
     {
         return Config::get($key, $default);
     }
 }
 
-if (!function_exists('head')) {
+if (! function_exists('head')) {
     /**
      * Get the first element of an array. Useful for method chaining.
      */
@@ -104,7 +104,7 @@ if (!function_exists('head')) {
     }
 }
 
-if (!function_exists('last')) {
+if (! function_exists('last')) {
     /**
      * Get the last element from an array.
      */
@@ -114,7 +114,7 @@ if (!function_exists('last')) {
     }
 }
 
-if (!function_exists('value')) {
+if (! function_exists('value')) {
     /**
      * Return the default value of the given value.
      */

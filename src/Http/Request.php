@@ -2,8 +2,8 @@
 
 namespace D076\PhpFramework\Http;
 
-use D076\PhpFramework\Http\Upload\UploadedFileInterface;
 use D076\PhpFramework\Http\Upload\UploadedFile;
+use D076\PhpFramework\Http\Upload\UploadedFileInterface;
 use D076\PhpFramework\Validator\Validator;
 use D076\PhpFramework\Validator\ValidatorInterface;
 
@@ -17,8 +17,7 @@ readonly class Request implements RequestInterface
         public array $server,
         public array $files,
         public array $cookies,
-    )
-    {
+    ) {
         $this->validator = new Validator();
     }
 
@@ -51,7 +50,7 @@ readonly class Request implements RequestInterface
     {
         $isPassed = $this->validator->validate($data, $rules);
 
-        if (!$isPassed && $withRedirectBack) {
+        if (! $isPassed && $withRedirectBack) {
             foreach ($this->validator->errors() as $field => $errors) {
                 app()->session->set($field, $errors);
             }
