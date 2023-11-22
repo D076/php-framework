@@ -4,6 +4,7 @@ namespace D076\PhpFramework\Container;
 
 use D076\PhpFramework\Auth\Auth;
 use D076\PhpFramework\Auth\AuthInterface;
+use D076\PhpFramework\Config\Env;
 use D076\PhpFramework\Database\Database;
 use D076\PhpFramework\Database\DatabaseInterface;
 use D076\PhpFramework\Http\Request;
@@ -26,6 +27,7 @@ class Container
     public readonly DatabaseInterface|null $db;
     public readonly AuthInterface $auth;
     public readonly StorageInterface $storage;
+    public readonly Env $env;
 
     private static ?Container $instance = null;
 
@@ -47,6 +49,7 @@ class Container
         $this->view = new View();
         $this->auth = new Auth();
         $this->storage = new Storage();
+        $this->env = new Env();
 
         if (config('database.enabled', true)) {
             $this->db = new Database([

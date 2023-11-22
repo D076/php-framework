@@ -4,7 +4,7 @@ namespace D076\PhpFramework\Config;
 
 class Config implements ConfigInterface
 {
-    public static function get(string $key, $default = null): mixed
+    public static function get(string $key, mixed $default = null): mixed
     {
         $exploded = explode('.', $key);
         $file = $exploded[0] ?? null;

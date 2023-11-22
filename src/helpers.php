@@ -94,6 +94,13 @@ if (!function_exists('config')) {
     }
 }
 
+if (!function_exists('env')) {
+    function env(string $key, mixed $default = null): mixed
+    {
+        return app()->env->get($key, $default);
+    }
+}
+
 if (!function_exists('head')) {
     /**
      * Get the first element of an array. Useful for method chaining.
