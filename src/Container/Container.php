@@ -5,6 +5,7 @@ namespace D076\PhpFramework\Container;
 use D076\PhpFramework\Auth\Auth;
 use D076\PhpFramework\Auth\AuthInterface;
 use D076\PhpFramework\Config\Env;
+use D076\PhpFramework\Config\EnvInterface;
 use D076\PhpFramework\Database\Database;
 use D076\PhpFramework\Database\DatabaseInterface;
 use D076\PhpFramework\Http\Request;
@@ -27,7 +28,7 @@ class Container
     public readonly DatabaseInterface|null $db;
     public readonly AuthInterface $auth;
     public readonly StorageInterface $storage;
-    public readonly Env $env;
+    public readonly EnvInterface $env;
 
     private static ?Container $instance = null;
     private bool $isRegistered = false;
@@ -53,12 +54,12 @@ class Container
 
         if (config('database.enabled', true)) {
             $this->db = new Database([
-                'driver' => config('database.driver', 'mysql'),
-                'host' => config('database.host', 'localhost'),
-                'port' => config('database.port', 3306),
+                'driver' => config('database.driver'),
+                'host' => config('database.host'),
+                'port' => config('database.port'),
                 'database' => config('database.database'),
                 'username' => config('database.username'),
-                'password' => config('database.password', ''),
+                'password' => config('database.password'),
                 'charset' => config('database.charset', 'utf8'),
             ]);
         } else {

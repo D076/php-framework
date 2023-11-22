@@ -35,21 +35,21 @@ class Env implements EnvInterface
         }
     }
 
-    private function getClearValue(string $str): ?string
+    private function getClearValue(string $value): ?string
     {
-        $str = trim($str);
+        $value = trim($value);
 
-        if ($str === 'true') {
+        if ($value === 'true') {
             return true;
-        } elseif ($str === 'false') {
+        } elseif ($value === 'false') {
             return false;
-        } elseif ($str === 'null') {
+        } elseif ($value === 'null') {
             return null;
         }
 
-        $str = trim(str_replace(["\r", "\n"], '', $str), " \t\n\r\0\x0B'\"");
+        $value = trim(str_replace(["\r", "\n"], '', $value), " \t\n\r\0\x0B'\"");
 
-        return blank($str) ? null : $str;
+        return blank($value) ? null : $value;
     }
 
     public function get(string $key, mixed $default = null): mixed

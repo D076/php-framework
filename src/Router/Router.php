@@ -2,7 +2,7 @@
 
 namespace D076\PhpFramework\Router;
 
-use D076\PhpFramework\Controller\Controller;
+use D076\PhpFramework\Http\Controller;
 use D076\PhpFramework\Http\Middleware\AbstractMiddleware;
 
 class Router implements RouterInterface
