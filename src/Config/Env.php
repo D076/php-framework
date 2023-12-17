@@ -5,22 +5,27 @@ namespace D076\PhpFramework\Config;
 class Env implements EnvInterface
 {
     private array $env = [];
+    private string $envPath;
 
-    public function __construct()
+    public function __construct(?string $envPath = null, array $env = [])
     {
-        $this->loadEnv();
+        $this->envPath = $envPath ?? constant('APP_PATH').'/.env';
+
+        if (empty($env)) {
+            $this->loadEnv();
+        } else {
+            $this->env = $env;
+        }
     }
 
     private function loadEnv(): void
     {
         try {
-            $path = constant('APP_PATH').'/.env';
-
-            if (! is_readable($path)) {
-                throw new \RuntimeException(sprintf('%s file is not readable', $path));
+            if (! is_readable($this->envPath)) {
+                throw new \RuntimeException(sprintf('%s file is not readable', $this->envPath));
             }
 
-            $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            $lines = file($this->envPath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
             foreach ($lines as $line) {
                 if (strpos(trim($line), '#') === 0) {
                     continue;

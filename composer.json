@@ -14,7 +14,8 @@
   },
   "require-dev": {
     "symfony/var-dumper": "^6.3",
-    "laravel/pint": "^1.13"
+    "laravel/pint": "^1.13",
+    "phpunit/phpunit": "^10.0.7"
   },
   "autoload": {
     "files": [
@@ -22,6 +23,11 @@
     ],
     "psr-4": {
       "D076\\PhpFramework\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "D076\\PhpFramework\\Tests\\": "tests/"
     }
   },
   "minimum-stability": "dev",
